@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, send_from_directory, send_file, render_template, jsonify
+from flask import Flask, request, abort, send_from_directory, send_file, render_template, jsonify, make_response
 import os
 import numpy as np
 import pandas as pd
@@ -9,16 +9,16 @@ import json
 from stuff import *
 import requests
 
-from flask_cors import CORS
-
+response = make_response(render_template('index.html', foo=42)), response.headers.add('Access-Control-Allow-Origin', '*')
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
 dlfolder = app.config['UPLOAD_FOLDER'] + '/out/'
-CORS(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    response = make_response(render_template('index.html'))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return respose
 
 @app.route("/write")
 def write():
