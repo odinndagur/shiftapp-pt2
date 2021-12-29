@@ -180,4 +180,4 @@ def c():
 
 if __name__ == '__main__':     
 #    app.run(host='0.0.0.0',port=5001,debug=True)
-    app.run(host='0.0.0.0')
+    app.run(port=process.env.port,host='0.0.0.0')
