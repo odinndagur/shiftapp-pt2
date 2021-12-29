@@ -8,21 +8,19 @@ import minecart
 import json
 from stuff import *
 import requests
-from flask_cors import CORS, cross_origin
+
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
 dlfolder = app.config['UPLOAD_FOLDER'] + '/out/'
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 @app.route("/")
-@cross_origin()
 def index():
     return render_template("index.html")
 
 @app.route("/write")
-@cross_origin()
 def write():
     file = open(app.config["UPLOAD_FOLDER"] + "/text.txt", "w")
     file.write("dadadadada\n")
@@ -31,7 +29,6 @@ def write():
     return "done"
 
 @app.route("/read")
-@cross_origin()
 def read():
     file = open(app.config["UPLOAD_FOLDER"] + "/text.txt", "r")
     content = file.read()
@@ -39,7 +36,6 @@ def read():
     return content
 
 @app.route('/uploader', methods = ['GET', 'POST'])
-@cross_origin()
 def upload_file():
    if request.method == 'POST':
         global plan
@@ -142,7 +138,6 @@ def upload_file():
         # return 'Succeeded!'
 
 @app.route('/get', methods=['POST','GET'])
-@cross_origin()
 def uploadimages():
     file_names=[]
     curr_path=os.getcwd()
@@ -165,7 +160,6 @@ def uploadimages():
         abort(404)             
 
 @app.route("/minecart", methods=['POST','GET'])
-@cross_origin()
 def c():
     # filenames = []
     print("starting minecart" + '\n')
