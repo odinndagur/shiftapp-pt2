@@ -9,7 +9,7 @@ import json
 from stuff import *
 import requests
 
-response = make_response(render_template('index.html', foo=42)), response.headers.add('Access-Control-Allow-Origin', '*')
+#response = make_response(render_template('index.html', foo=42)), response.headers.add('Access-Control-Allow-Origin', '*')
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
 dlfolder = app.config['UPLOAD_FOLDER'] + '/out/'
@@ -17,7 +17,7 @@ dlfolder = app.config['UPLOAD_FOLDER'] + '/out/'
 @app.route("/")
 def index():
     response = make_response(render_template('index.html')), response.headers.add('Access-Control-Allow-Origin', '*')
-    return respose
+    return response
 
 @app.route("/write")
 def write():
