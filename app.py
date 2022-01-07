@@ -16,7 +16,8 @@ dlfolder = app.config['UPLOAD_FOLDER'] + '/out/'
 
 @app.route("/")
 def index():
-    response = make_response(render_template('index.html')), response.headers.add('Access-Control-Allow-Origin', '*')
+    response = make_response(render_template('index.html'))
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 @app.route("/write")
